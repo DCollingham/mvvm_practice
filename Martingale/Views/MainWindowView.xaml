@@ -8,8 +8,10 @@
              d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
              mc:Ignorable="d" 
              Width="600" Height="400">
-    <Grid>
+    <StackPanel>
         <Label>Test</Label>
         <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-    </Grid>
+        <Label Content="{Binding Bank}"></Label>
+        <Button Command="{Binding IncreaseCommand}">Increase Count</Button>
+    </StackPanel>
 </UserControl>

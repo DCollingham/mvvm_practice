@@ -1,4 +1,7 @@
-﻿using Martingale.Models;
+﻿using Martingale.Commands;
+using Martingale.Models;
+using System.Diagnostics;
+using System.Windows.Input;
 
 namespace Martingale.ViewModels
 {
@@ -7,7 +10,19 @@ namespace Martingale.ViewModels
         private User user;
         private int _id;
         private string _name;
-        private decimal _bankroll;
+        private decimal bank;
+
+
+        public User User
+        {
+            get { return user; }
+            set 
+            { 
+                user = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public int Id
         {
@@ -29,15 +44,17 @@ namespace Martingale.ViewModels
             }
         }
 
-        public decimal Bankroll
+        public decimal Bank
         {
-            get => user.BankRoll;
+            get => user.Bank;
             set 
-            { 
-                _bankroll = value;
+            {
+                user.Bank = value;
                 OnPropertyChanged();
             }
         }
+
+        public ICommand IncreaseCommand { get; }
 
         public MainWindowViewModel()
         {
@@ -45,8 +62,14 @@ namespace Martingale.ViewModels
             {
                 Id = 1,
                 Name = "Dylan",
-                BankRoll = 10
+                Bank = 10
             };
+            IncreaseCommand = new IncreaseBankrollCommand(this);
+        }
+
+        public void IncreaseBank()
+        {
+            Bank += 50;
         }
     }
 }

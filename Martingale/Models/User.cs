@@ -10,6 +10,6 @@ namespace Martingale.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public decimal BankRoll { get; set; }
+        public decimal Bank { get; set; }
     }
 }
